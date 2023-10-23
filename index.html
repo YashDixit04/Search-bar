@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman';
+        }
+
+        body {
+            background-image: radial-gradient(#767676, #1c1c1c, #000000);
+            height: 60vh;
+        }
+
+        .search-box {
+            width: 600px;
+            background: #fff;
+            margin: 200px auto 0;
+            border-radius: 5px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input {
+            flex: 1;
+            height: 40px;
+            border: 0;
+            outline: 0;
+            padding: 9px 10px;
+            width: 400px;
+            font-size: 18px;
+            color: rgb(0, 0, 0);
+        }
+
+        button {
+            height: auto;
+            background: transparent;
+            border: none;
+            padding: 0px 20px 0px 0px;
+        }
+
+        button .fa-solid {
+            width: 24px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        ::placeholder {
+            color: #767676;
+        }
+        .result-box{
+            max-height: 300px;
+            overflow-y:scroll ;
+        }
+        .result-box ul {
+            border-top: 1px solid #999;
+            padding: 14px 10px;
+        }
+
+        .result-box ul li {
+            list-style: none;
+            border: 2px;
+            padding: 14px 10px;
+            cursor: pointer;
+        }
+
+        .result-box ul li:hover {
+            background-color: #5037f4b2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search-box">
+        <div class="row">
+            <input type="text" id="input-box" autocomplete="off" placeholder="Entre the search">
+            <button><i class="fa-solid fa-magnifying-glass" style="color: #381af7;"></i></button>
+        </div>
+        <div class="result-box">
+
+        </div>
+    </div>
+</body>
+<script>
+    let availableKeyword = [
+        'HTML',
+        'CSS',
+        "JS",
+        'JavaScript',
+        'MongoDb',
+        "Node.js",
+        "Full-stack Developer"
+    ]
+    const resultsBox = document.querySelector(".result-box")
+    const inputBox = document.querySelector("#input-box")
+
+    inputBox.onkeyup = function () {
+        let result = []
+        let input = inputBox.value;
+        if (input.length) {
+            result = availableKeyword.filter((keyword) => {
+                return keyword.toLowerCase().includes(input.toLowerCase());
+
+            });
+            display(result);
+            if(!result.length){
+                resultsBox.innerHTML='';
+            }
+        }
+    }
+    function display(result) {
+        const content = result.map((list) => {
+            return "<li onclick=selectInput(this)>" + list + "</li>";
+        });
+        resultsBox.innerHTML = "<ul>" + content.join('') + " </ul>"
+    }
+
+
+    function selectInput(list) {
+        inputBox.value = list.innerHTML;
+        resultsBox.innerHTML ="";
+    }
+</script>
+
+</html>
