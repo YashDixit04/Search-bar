@@ -9,6 +9,7 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="style.css">
     <style>
         * {
             margin: 0;
@@ -62,10 +63,12 @@
         ::placeholder {
             color: #767676;
         }
-        .result-box{
+
+        .result-box {
             max-height: 300px;
-            overflow-y:scroll ;
+            overflow-y: scroll;
         }
+
         .result-box ul {
             border-top: 1px solid #999;
             padding: 14px 10px;
@@ -105,6 +108,7 @@
         "Node.js",
         "Full-stack Developer"
     ]
+    
     const resultsBox = document.querySelector(".result-box")
     const inputBox = document.querySelector("#input-box")
 
@@ -117,8 +121,8 @@
 
             });
             display(result);
-            if(!result.length){
-                resultsBox.innerHTML='';
+            if (!result.length) {
+                resultsBox.innerHTML = '';
             }
         }
     }
@@ -132,7 +136,7 @@
 
     function selectInput(list) {
         inputBox.value = list.innerHTML;
-        resultsBox.innerHTML ="";
+        resultsBox.innerHTML = "";
     }
 </script>
 
