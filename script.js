@@ -23,29 +23,6 @@ const fetchKeywords = async (input) => {
     return storage;
 }
 
-
-// function displayBox(storage) {
-
-//     storage.forEach(userInfo => {
-//         users = storage.map(userInfo => {
-//             const cards = userCardTemplate.content.cloneNode(true).children[0];
-//             const header = cards.querySelector('[data-header]');
-//             const body = cards.querySelector('[data-body]');
-
-//             header.textContent = userInfo.name;
-//             body.textContent = userInfo.email;
-//             cards.addEventListener("click", () => {
-              
-//                 console.log(`Clicked on ${userInfo.name}`);
-//             });
-//             userCardContainer.append(storage)
-//             return { name: userInfo.name, email: userInfo.email, element: cards }
-
-//         });
-//     });
-// }
-
-
 inputBox.onkeyup = async () => {
     let result = []
     let input = inputBox.value;
@@ -63,7 +40,8 @@ inputBox.onkeyup = async () => {
 }
 function display(result) {
     const content = result.map((list) => {
-        return "<li onclick=selectInput(this)>" + list + "</li>";
+        let li = "<li onclick=selectInput(this)>" + list + "</li>";
+        return li;
     });
     resultsBox.innerHTML = "<ul>" + content.join('') + " </ul>"
 }
@@ -74,11 +52,47 @@ function selectInput(list) {
 
 
 
-// searchInput.addEventListener("input", e => {
-//     const value = e.target.value.toLowerCase();
-//     users.forEach(userInfo => {
-//         const isVisible = userInfo.name.toLowerCase().includes(value) || userInfo.email.toLowerCase().includes(value)
-//         userInfo.element.classList.toggle("hide", !isVisible)
-//     })
-// })
+searchInput.addEventListener("input", e => {
+    const value = e.target.value.toLowerCase();
+    users.forEach(userInfo => {
+        const isVisible = userInfo.name.toLowerCase().includes(value) || userInfo.email.toLowerCase().includes(value)
+        userInfo.element.classList.toggle("hide", !isVisible)
+    })
+})
 
+// NOT Working  -------------->>>>>>>>
+function displayBox(storage) {
+    
+    resultsBox.addEventListener("click", () => {
+        const cards = userCardTemplate.content.cloneNode(true).children[0];
+                const header = cards.querySelector('[data-header]');
+                const body = cards.querySelector('[data-body]');
+                header.textContent = storage;
+                body.textContent = storage.email;
+                console.log(header, body)
+                // console.log(userCardContainer)
+                userCardContainer.append(storage)
+                        return { name: storage.name, email: storage.email, element: cards }
+                     
+    })
+}
+
+
+// storage.forEach(userInfo => {
+//     users = storage.filter(userInfo => {
+//         const cards = userCardTemplate.content.cloneNode(true).children[0];
+//         const header = cards.querySelector('[data-header]');
+//         const body = cards.querySelector('[data-body]');
+
+//         header.textContent = userInfo.name;
+//         body.textContent = userInfo.email;
+//         cards.addEventListener("click", () => {
+
+//             console.log(`Clicked on ${userInfo.name}`);
+//         });
+//         userCardContainer.append(storage)
+//         return { name: userInfo.name, email: userInfo.email, element: cards }
+
+//     });
+// });
+// })
