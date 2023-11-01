@@ -60,7 +60,6 @@ searchInput.addEventListener("input", e => {
     })
 })
 
-// NOT Working  -------------->>>>>>>>
 function displayBox(storage) {
     
     resultsBox.addEventListener("click", () => {
